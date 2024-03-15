@@ -1,12 +1,16 @@
 export DIST_NAME=pistompOS
 export DIST_VERSION=2.2.0
+export BASE_ARCH=arm64
 export BASE_IMAGE_ENLARGEROOT=5500
 export BASE_IMAGE_RESIZEROOT=600
+export BASE_USER=pistomp
+export BASE_USER_PASSWORD=pistomp
+export BASE_OVERRIDE_HOSTNAME=pistomp
 
 # rpi-imager json generator settings
 export RPI_IMAGER_NAME="${DIST_NAME}"
 export RPI_IMAGER_DESCRIPTION="A raspberrypi distro built with CustomPiOS"
 export RPI_IMAGER_WEBSITE="https://github.com/micahvdm/pistompOS"
-export RPI_IMAGER_ICON="https://raw.githubusercontent.com/guysoft/CustomPiOS/devel/media/rpi-imager-CustomPiOS.png"
+export RPI_IMAGER_ICON="https://raw.githubusercontent.com/TreeFallSound/pi-stomp/master/modalapi/pi-stomp.png"
 
-export MODULES="network(base,req_preinstall,lilv,auto-mount-removable,mod,mod_ttymidi,audio,pistomp,services,sys,kernel)"
+export MODULES="base,network,req_preinstall(lilv,auto-mount-removable,mod,mod_ttymidi,audio,pistomp,services,sys,kernel,password-for-sudo)"
