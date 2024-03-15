@@ -1,0 +1,37 @@
+#!/usr/bin/env bash 
+
+# shellcheck enable=require-variable-braces
+
+## Source error handling, leave this in place
+set -Eex
+
+# Set LC_ALL to prevent errors
+export LC_ALL=C
+
+# Set DEBIAN_FRONTEND to noninteractive
+if [[ "${DEBIAN_FRONTEND}" != "noninteractive" ]]; then
+    export DEBIAN_FRONTEND=noninteractive
+fi
+
+# Source CustomPIOS common.sh
+# shellcheck disable=SC1091
+source /common.sh
+install_cleanup_trap
+
+### install all deps at once for time consumption reasons.
+## APT: Update Repo Database and install Dependencies
+# Force apt update
+apt update
+echo_green "Installing pi-Stomp Dependencies ..."
+# shellcheck disable=SC2086
+# Disabling shellcheck SC2086, because we want "wordsplitting"
+sudo apt install -y ${IS_REQ_PREINSTALL_DEPS}
+echo_green "Installing Python Packages"
+sudo /bin/pip3 install -v "${IS_REQ_PREINSTALL_PIP}"
+
+## Cleanup
+echo_green "Cleanup ..."
+sudo -u "${BASE_USER}" rm -rf "/home/${BASE_USER}/.cache"
+popd  &> /dev/null || exit 1
+
+echo_green "Install pi-Stomp requirements ... done!"

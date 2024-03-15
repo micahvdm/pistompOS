@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+#Shebang for better file detection
+
+[ -n "$MODTTY_REPO_SHIP"] || MODTTY_REPO_SHIP=https://github.com/moddevices/mod-ttymidi.git

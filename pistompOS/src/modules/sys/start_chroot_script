@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+
+# shellcheck enable=requires-variable-braces
+
+# Error handling
+set -Ee
+
+# shellcheck disable=SC1091
+source /common.sh
+install_cleanup_trap
+
+sudo sed -i 's/console=serial0,115200//' /boot/cmdline.txt
+
+# Remove devices not needed for audio
+sudo bash -c "sed -i \"s/^\s*hdmi_force_hotplug=/#hdmi_force_hotplug=/\" /boot/config.txt"
+sudo bash -c "sed -i \"s/^\s*camera_auto_detect=/#camera_auto_detect=/\" /boot/config.txt"
+sudo bash -c "sed -i \"s/^\s*display_auto_detect=/#display_auto_detect=/\" /boot/config.txt"
+sudo bash -c "sed -i \"s/^\s*dtoverlay=vc4-kms-v3d/#dtoverlay=vc4-kms-v3d/\" /boot/config.txt"
+
+# Enable SPI
+sudo bash -c "sed -i \"s/^\s*#dtparam=spi=on/dtparam=spi=on/\" /boot/config.txt"
+
+# append lines to config.txt
+sudo bash -c "cat >> /boot/config.txt <<EOF
+
+# pi-stomp additions to allow DIN Midi, disables bluetooth however
+enable_uart=1
+dtoverlay=pi3-disable-bt
+dtoverlay=pi3-miniuart-bt
+dtoverlay=midi-uart0
+dtoverlay=dwc2,dr_mode=host
+EOF"
+fi
+
+unpack /filesystem/home/pi /home/"${BASE_USER}" "${BASE_USER}"

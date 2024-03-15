@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+# <Script Name>
+# <Description what this module does>
+# Written by <Author>
+# GPL V3
+########
+
+
+# Source error handling, leave this in place
+set -x
+set -e
+
+source /common.sh
+install_cleanup_trap
+
+apt update
+check_install_pkgs liblilv-dev lv2-dev libserd-dev libsord-dev libsratom-dev
+
+pushd "/home/${BASE_USER}" &> /dev/null || exit 1
+
+pushd $(mktemp -d)
+wget LILV_REPO
+tar xvf lilv-0.24.12.tar.bz2
+pushd lilv-0.24.12
+
+python3 ./waf configure --prefix=/usr/local  --static --static-progs --no-shared --no-utils --no-bash-completion --pythondir=/usr/local/lib/python3.9/dist-packages
+python3 ./waf build
+sudo python3 ./waf install
+
+popd &> /dev/null || exit 1
+
+popd &> /dev/null || exit 1

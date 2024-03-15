@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+
+# shellcheck enable=requires-variable-braces
+
+# Error handling
+set -Ee
+
+# shellcheck disable=SC1091
+
+source /common.sh
+install_cleanup_trap
+
+sudo bash -c "sed -i \"s/^\s*dtparam=audio/#dtparam=audio/\" /boot/config.txt"
+
+# add alsa restore to rc.local
+sudo patch -b -N -u /etc/rc.local -i /filesystem/rclocal.diff
+
+# append lines to config.txt
+sudo bash -c "cat >> /boot/config.txt <<EOF
+
+# enable the sound card (uncomment only one)
+#dtoverlay=audioinjector-wm8731-audio
+dtoverlay=iqaudio-codec
+#dtoverlay=hifiberry-dacplusadc
+EOF"
+fi
+
+unpack /filesystem/home/pi/data /home/"${BASE_USER}"/data "${BASE_USER}"

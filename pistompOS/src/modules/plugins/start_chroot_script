@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+# shellcheck enable=requires-variable-braces
+
+# Error handling
+set -Ee
+
+# shellcheck disable=SC1091
+source /common.sh
+install_cleanup_trap
+
+pushd "/home/${BASE_USER}" &> /dev/null || exit 1
+
+wget https://www.treefallsound.com/downloads/lv2plugins.tar.gz
+tar -zxf lv2plugins.tar.gz
+rm lv2plugins.tar.gz
+
+gitclone https://github.com/TreeFallSound/pi-stomp-pedalboards.git /home/${BASE_USER}/data/.pedalboards
+
+popd &> /dev/null || exit 1

@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+#Shebang for better file detection
+
+#Jack2
+[ -n "$JACK_REPO_SHIP" ] || JACK_REPO_SHIP=https://github.com/micahvdm/jack2.git
+#Browsepy
+[ -n "$BROWSEPY_REPO_SHIP" ] || BROWSEPY_REPO_SHIP=https://github.com/micahvdm/browsepy.git
+#Mod-Host
+[ -n "$MODHOST_REPO_SHIP" ] || MODHOST_REPO_SHIP=https://github.com/micahvdm/mod-host.git
+#Mod-UI
+[ -n "$MODUI_REPO_SHIP" ] || MODUI_REPO_SHIP=https://github.com/micahvdm/mod-ui.git
+#Mod-Midi-Merger
+[ -n "$MODMIDI_REPO_SHIP" ] || MODMIDI_REPO_SHIP=https://github.com/micahvdm/mod-midi-merger.git
+#Amidi-thru
+[ -n "$AMIDI_REPO_SHIP" ] || AMIDI_REPO_SHIP=https://github.com/BlokasLabs/amidithru.git
+#Touchosc2midi
+[ -n "$TOUCHOSC_REPO_SHIP" ] || TOUCHOSC_REPO_SHIP=https://github.com/micahvdm/touchosc2midi.git

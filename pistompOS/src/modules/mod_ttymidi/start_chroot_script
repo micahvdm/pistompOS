@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+# <Script Name>
+# <Description what this module does>
+# Written by <Author>
+# GPL V3
+########
+
+
+# Source error handling, leave this in place
+set -x
+set -e
+
+source /common.sh
+install_cleanup_trap
+
+pushd "/home/${BASE_USER}" &> /dev/null || exit 1
+
+gitclone MODTTY_REPO mod_ttymidi
+
+pushd "/home/${BASE_USER}/mod_ttymidi" &> /dev/null || exit 1
+sudo make install
+
+popd &> /dev/null || exit 1
+
+popd &> /dev/null || exit 1
