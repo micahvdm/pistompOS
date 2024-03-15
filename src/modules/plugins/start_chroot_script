@@ -9,12 +9,9 @@ set -Ee
 source /common.sh
 install_cleanup_trap
 
-pushd "/home/${BASE_USER}" &> /dev/null || exit 1
-
 wget https://www.treefallsound.com/downloads/lv2plugins.tar.gz
 tar -zxf lv2plugins.tar.gz
 rm lv2plugins.tar.gz
 
-gitclone https://github.com/TreeFallSound/pi-stomp-pedalboards.git /home/${BASE_USER}/data/.pedalboards
+gitclone https://github.com/TreeFallSound/pi-stomp-pedalboards.git /home/pi/data/.pedalboards
 
-popd &> /dev/null || exit 1

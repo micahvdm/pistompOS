@@ -32,4 +32,4 @@ dtoverlay=dwc2,dr_mode=host
 EOF"
 fi
 
-unpack /filesystem/home/pi /home/"${BASE_USER}" "${BASE_USER}"
+unpack /filesystem/home/pi /home/"pi" "pi"

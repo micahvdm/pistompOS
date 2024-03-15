@@ -13,11 +13,11 @@ set -e
 source /common.sh
 install_cleanup_trap
 
-pushd "/home/${BASE_USER}" &> /dev/null || exit 1
+pushd "/home/pi" &> /dev/null || exit 1
 
 gitclone MODTTY_REPO mod_ttymidi
 
-pushd "/home/${BASE_USER}/mod_ttymidi" &> /dev/null || exit 1
+pushd "/home/pi/mod_ttymidi" &> /dev/null || exit 1
 sudo make install
 
 popd &> /dev/null || exit 1

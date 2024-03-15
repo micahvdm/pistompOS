@@ -16,12 +16,12 @@ apt-get update --allow-releaseinfo-change
 check_install_pkgs git
 
 ## Step 3: Move to Home Dir as WorkingDirectoy
-pushd "/home/${BASE_USER}" &> /dev/null || exit 1
+pushd "/home/pi"
 
 ## Step 4: clone KIAUH repo
 echo_green "Clone pi-Stomp repository ..."
 gitclone PISTOMP_REPO pi-stomp
 
-unpack /filesystem/home/pi /home/"${BASE_USER}" "${BASE_USER}"
+unpack /filesystem/home/pi /home/"pi" "pi"
 
-popd &> /dev/null || exit 1
+popd

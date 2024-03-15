@@ -25,4 +25,4 @@ dtoverlay=iqaudio-codec
 EOF"
 fi
 
-unpack /filesystem/home/pi/data /home/"${BASE_USER}"/data "${BASE_USER}"
+unpack /filesystem/home/pi/data /home/"pi"/data "pi"

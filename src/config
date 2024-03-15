@@ -5,6 +5,7 @@ export BASE_BOOT_MOUNT_PATH=boot
 export BASE_IMAGE_ENLARGEROOT=5500
 export BASE_IMAGE_RESIZEROOT=600
 export BASE_USER=pistomp
+export BASE_ADD_USER="yes"
 export BASE_USER_PASSWORD=pistomp
 export BASE_OVERRIDE_HOSTNAME=pistomp
 

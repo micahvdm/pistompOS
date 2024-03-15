@@ -15,7 +15,7 @@ install_cleanup_trap
 
 gitclone JACK_REPO jack2
 
-pushd "/home/${BASE_USER}/jack2"
+pushd "/home/pi/jack2"
 ./waf configure
 ./waf build
 sudo ./waf install
@@ -23,31 +23,31 @@ popd
 
 gitclone BROWSEPY_REPO browsepy
 
-pushd "/home/${BASE_USER}/browsepy"
+pushd "/home/pi/browsepy"
 sudo pip3 install ./
 popd
 
 gitclone MODHOST_REPO mod-host
 
-pushd "/home/${BASE_USER}/mod-host"
+pushd "/home/pi/mod-host"
 make
 sudo make install
 popd
 
 gitclone MODUI_REPO mod-ui
 
-pushd "/home/${BASE_USER}/mod-ui"
+pushd "/home/pi/mod-ui"
 chmod +x setup.py
 cd utils
 make
 cd ..
 sudo ./setup.py install
-cp -r default.pedalboard /home/${BASE_USER}/data/.pedalboards
+cp -r default.pedalboard /home/pi/data/.pedalboards
 popd
 
 gitclone MODMIDI_REPO mod-midi-merger
 
-pushd "/home/${BASE_USER}/mod-midi-merger"
+pushd "/home/pi/mod-midi-merger"
 mkdir build && cd build
 cmake ..
 make
@@ -56,18 +56,18 @@ popd
 
 gitclone AMIDI_REPO amidithru
 
-pushd "/home/${BASE_USER}/amidithru"
+pushd "/home/pi/amidithru"
 sed -i 's/CXX=g++.*/CXX=g++/' Makefile
 sudo make install
 popd
 
 gitclone TOUCHOSC_REPO touchosc2midi
 
-pushd "/home/${BASE_USER}/touchosc2midi"
+pushd "/home/pi/touchosc2midi"
 sudo pip3 install ./
 popd
 
 sudo adduser --no-create-home --system --group jack
-sudo adduser ${BASE_USER} jack --quiet
+sudo adduser pi jack --quiet
 sudo adduser root jack --quiet
 sudo adduser jack audio --quiet
