@@ -1,6 +1,7 @@
 export DIST_NAME=pistompOS
 export DIST_VERSION=2.2.0
 export BASE_ARCH=arm64
+export BASE_BOOT_MOUNT_PATH=boot
 export BASE_IMAGE_ENLARGEROOT=5500
 export BASE_IMAGE_RESIZEROOT=600
 export BASE_USER=pistomp
