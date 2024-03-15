@@ -19,7 +19,7 @@ check_install_pkgs liblilv-dev lv2-dev libserd-dev libsord-dev libsratom-dev
 pushd "/home/${BASE_USER}" &> /dev/null || exit 1
 
 pushd $(mktemp -d)
-wget LILV_REPO
+wget http://download.drobilla.net/lilv-0.24.12.tar.bz2
 tar xvf lilv-0.24.12.tar.bz2
 pushd lilv-0.24.12
 
