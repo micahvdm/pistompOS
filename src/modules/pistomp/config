@@ -2,4 +2,4 @@
 #Shebang for better file detection
 
 [ -n "$PISTOMP_REPO_SHIP" ] || PISTOMP_REPO_SHIP=https://github.com/TreeFallSound/pi-stomp.git
-[ -n "$PISTOMP_REPO_BRANCH" ] || PISTOMP_REPO_BRANCH=master
+[ -n "$PISTOMP_REPO_BRANCH" ] || PISTOMP_REPO_BRANCH=beta
