@@ -1,5 +1,7 @@
 export DIST_NAME=pistompOS
 export DIST_VERSION=2.2.0
+export BASE_IMAGE_ENLARGEROOT=4500
+export BASE_IMAGE_RESIZEROOT=600
 
 # rpi-imager json generator settings
 export RPI_IMAGER_NAME="${DIST_NAME}"
