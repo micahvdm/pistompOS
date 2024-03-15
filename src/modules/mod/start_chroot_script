@@ -13,63 +13,59 @@ set -e
 source /common.sh
 install_cleanup_trap
 
-pushd "/home/${BASE_USER}" &> /dev/null || exit 1
-
 gitclone JACK_REPO jack2
 
-pushd "/home/${BASE_USER}/jack2" &> /dev/null || exit 1
+pushd "/home/${BASE_USER}/jack2"
 ./waf configure
 ./waf build
 sudo ./waf install
-popd &> /dev/null || exit 1
+popd
 
 gitclone BROWSEPY_REPO browsepy
 
-pushd "/home/${BASE_USER}/browsepy" &> /dev/null || exit 1
+pushd "/home/${BASE_USER}/browsepy"
 sudo pip3 install ./
-popd &> /dev/null || exit 1
+popd
 
 gitclone MODHOST_REPO mod-host
 
-pushd "/home/${BASE_USER}/mod-host" &> /dev/null || exit 1
+pushd "/home/${BASE_USER}/mod-host"
 make
 sudo make install
-popd &> /dev/null || exit 1
+popd
 
 gitclone MODUI_REPO mod-ui
 
-pushd "/home/${BASE_USER}/mod-ui" &> /dev/null || exit 1
+pushd "/home/${BASE_USER}/mod-ui"
 chmod +x setup.py
 cd utils
 make
 cd ..
 sudo ./setup.py install
 cp -r default.pedalboard /home/${BASE_USER}/data/.pedalboards
-popd &> /dev/null || exit 1
+popd
 
 gitclone MODMIDI_REPO mod-midi-merger
 
-pushd "/home/${BASE_USER}/mod-midi-merger" &> /dev/null || exit 1
+pushd "/home/${BASE_USER}/mod-midi-merger"
 mkdir build && cd build
 cmake ..
 make
 sudo make install
-popd &> /dev/null || exit 1
+popd
 
 gitclone AMIDI_REPO amidithru
 
-pushd "/home/${BASE_USER}/amidithru" &> /dev/null || exit 1
+pushd "/home/${BASE_USER}/amidithru"
 sed -i 's/CXX=g++.*/CXX=g++/' Makefile
 sudo make install
-popd &> /dev/null || exit 1
+popd
 
 gitclone TOUCHOSC_REPO touchosc2midi
 
-pushd "/home/${BASE_USER}/touchosc2midi" &> /dev/null || exit 1
+pushd "/home/${BASE_USER}/touchosc2midi"
 sudo pip3 install ./
-popd &> /dev/null || exit 1
-
-popd &> /dev/null || exit 1
+popd
 
 sudo adduser --no-create-home --system --group jack
 sudo adduser ${BASE_USER} jack --quiet
