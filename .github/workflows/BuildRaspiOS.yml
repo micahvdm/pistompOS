@@ -1,0 +1,53 @@
+name: Build pistompOS
+on:
+  push:
+    branches:
+      - '**'
+    tags-ignore:
+      - '**'
+  pull_request:
+    types: [ opened, edited ]
+  workflow_dispatch:
+  schedule:
+    - cron: '0 0 * * *'
+
+jobs:
+  raspiosbuild:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Install Dependencies
+        run: sudo apt update; sudo apt install coreutils p7zip-full qemu-user-static zip
+
+      - name: Checkout CustomPiOS
+        uses: actions/checkout@v2
+        with:
+          repository: 'guysoft/CustomPiOS'
+          path: CustomPiOS
+
+      - name: Checkout pistompOS Project
+        uses: actions/checkout@v2
+        with:
+          repository: ${{ github.repository }}
+          path: repository
+          submodules: true
+
+      - name: Download Raspberry Pi OS Source Image
+        run: aria2c -d repository/src/image/ --seed-time=0 https://downloads.raspberrypi.org/raspios_oldstable_lite_arm64_latest.torrent
+
+      - name: Update CustomPiOS Paths
+        run: cd repository/src && ../../CustomPiOS/src/update-custompios-paths
+
+      - name: Build Image
+        run: sudo modprobe loop && cd repository/src && sudo bash -x ./build_dist
+
+      - name: Copy output image
+        run: cp ${{ github.workspace }}/repository/src/workspace/*-raspios-*-lite.img pistompOS-latest.img
+
+      - name: Compress the image
+        run: zip pistompOS-latest.zip pistompOS-latest.img
+
+      - uses: actions/upload-artifact@v1
+        with:
+          name: pistompOS-latest.zip
+          path: pistompOS-latest.zip

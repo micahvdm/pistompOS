@@ -3,7 +3,7 @@
 # All our config settings must start with BASE_
 
 # CustomPiOS version
-BASE_VERSION=1.5.0
+BASE_VERSION=2.2.0
 
 [ -n "$BASE_PRESCRIPT" ] || BASE_PRESCRIPT=
 [ -n "$BASE_POSTSCRIPT" ] || BASE_POSTSCRIPT=
@@ -34,9 +34,9 @@ else
         [ -n "$BASE_ZIP_IMG" ] || BASE_ZIP_IMG=$(ls -t $BASE_IMAGE_PATH/*-{raspbian,raspios}*.{zip,7z,xz} | head -n 1)
     fi
     # Default user raspbian
-    [ -n "$BASE_USER" ] || BASE_USER=pi
+    [ -n "$BASE_USER" ] || BASE_USER=pistomp
     [ -n "$BASE_ADD_USER" ] || BASE_ADD_USER=yes
-    [ -n "$BASE_USER_PASSWORD" ] || BASE_USER_PASSWORD=raspberry
+    [ -n "$BASE_USER_PASSWORD" ] || BASE_USER_PASSWORD=pistomp
 fi
 
 # Release compression
@@ -49,7 +49,7 @@ fi
 # [ -n "$BASE_CHROOT_SCRIPT_PATH" ] || BASE_CHROOT_SCRIPT_PATH=$BASE_SCRIPT_PATH/chroot_script
 [ -n "$BASE_MOUNT_PATH" ] || BASE_MOUNT_PATH=$BASE_WORKSPACE/mount
 
-[ -n "${BASE_BOOT_MOUNT_PATH}" ] || BASE_BOOT_MOUNT_PATH=boot/firmware
+[ -n "${BASE_BOOT_MOUNT_PATH}" ] || BASE_BOOT_MOUNT_PATH=boot
 
 # The root partition of the image filesystem, 2 for raspbian
 [ -n "$BASE_ROOT_PARTITION" ] || BASE_ROOT_PARTITION=2
@@ -72,7 +72,7 @@ fi
 # an alternative pypi index url to use, e.g. a proxy such as devpi
 [ -n "$BASE_PYPI_INDEX" ] || BASE_PYPI_INDEX=
 
-[ -n "$BASE_OVERRIDE_HOSTNAME" ] || BASE_OVERRIDE_HOSTNAME=${DIST_NAME,,}
+[ -n "$BASE_OVERRIDE_HOSTNAME" ] || BASE_OVERRIDE_HOSTNAME=pistomp
 
 # a git mirror to use for git clones instead of original remotes
 [ -n "$BASE_BUILD_REPO_MIRROR" ] || BASE_BUILD_REPO_MIRROR=
