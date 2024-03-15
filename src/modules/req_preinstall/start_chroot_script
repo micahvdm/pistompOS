@@ -23,15 +23,44 @@ install_cleanup_trap
 # Force apt update
 apt update
 echo_green "Installing pi-Stomp Dependencies ..."
-# shellcheck disable=SC2086
-# Disabling shellcheck SC2086, because we want "wordsplitting"
-sudo apt install -y ${IS_REQ_PREINSTALL_DEPS}
-echo_green "Installing Python Packages"
-sudo /bin/pip3 install -v "${IS_REQ_PREINSTALL_PIP}"
 
-## Cleanup
-echo_green "Cleanup ..."
-sudo -u "${BASE_USER}" rm -rf "/home/${BASE_USER}/.cache"
-popd  &> /dev/null || exit 1
+sudo apt-get -y install virtualenv python3-pip python3-dev python3-zeroconf build-essential libasound2-dev libjack-jackd2-dev \
+                        zlib1g-dev cmake gperf intltool ladspa-sdk libarmadillo-dev libavahi-gobject-dev liblilv-dev libjpeg-dev \
+                        libavcodec-dev libavutil-dev libbluetooth-dev libboost-dev libeigen3-dev libfftw3-dev libglib2.0-dev libglibmm-2.4-dev \
+                        libgtk2.0-dev libgtkmm-2.4-dev liblrdf0-dev libsamplerate0-dev libsigc++-2.0-dev libsndfile1-dev libzita-convolver-dev \
+                        libzita-resampler-dev lv2-dev p7zip-full python3-all python3-setuptools libreadline-dev zita-alsa-pcmi-utils hostapd \
+                        dnsmasq iptables python3-smbus liblo-dev python3-liblo libzita-alsa-pcmi-dev authbind rcconf libfluidsynth-dev lockfile-progs
+
+echo_green "Installing Python Packages"
+
+pip3 install pyserial==3.0 pystache==0.5.4 aggdraw==1.3.11 scandir backports.shutil-get-terminal-size
+pip3 install pycrypto
+pip3 install tornado==4.3
+pip3 install Pillow==9.4.0
+pip3 install cython
+pip3 install pyyaml
+pip3 install pyalsaaudio
+pip3 install python-rtmidi
+pip3 install requests
+pip3 install RPi.GPIO
+pip3 install gfxhat
+pip3 install adafruit-circuitpython-rgb-display
+pip3 install python-config
+pip3 install adafruit-circuitpython-mcp3xxx 
+pip3 install matplotlib
+pip3 install rpi_ws281x
+pip3 install adafruit-circuitpython-neopixel
+pip3 install jsonschema
+pip3 install flask
+pip3 install unicategories
+pip3 install scandir
+pip3 install pep8
+pip3 install flake8
+pip3 install coverage
+pip3 install pyaml
+pip3 install sphinx
+pip3 install netifaces==0.10.5
+pip3 install mido==1.1.24
+pip3 install docopt==0.6.2
 
 echo_green "Install pi-Stomp requirements ... done!"
