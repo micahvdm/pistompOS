@@ -13,5 +13,5 @@ wget https://www.treefallsound.com/downloads/lv2plugins.tar.gz
 tar -zxf lv2plugins.tar.gz
 rm lv2plugins.tar.gz
 
-gitclone https://github.com/TreeFallSound/pi-stomp-pedalboards.git /home/pi/data/.pedalboards
+git clone https://github.com/TreeFallSound/pi-stomp-pedalboards.git /home/pi/data/.pedalboards/
 

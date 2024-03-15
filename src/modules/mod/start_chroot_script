@@ -13,57 +13,50 @@ set -e
 source /common.sh
 install_cleanup_trap
 
-gitclone JACK_REPO jack2
-
-pushd "/home/pi/jack2"
+pushd $(mktemp -d) && git clone https://github.com/micahvdm/jack2.git
+pushd jack2
 ./waf configure
 ./waf build
 sudo ./waf install
 popd
 
-gitclone BROWSEPY_REPO browsepy
-
-pushd "/home/pi/browsepy"
+pushd $(mktemp -d) && git clone https://github.com/micahvdm/browsepy.git
+pushd browsepy
 sudo pip3 install ./
 popd
 
-gitclone MODHOST_REPO mod-host
-
-pushd "/home/pi/mod-host"
+pushd $(mktemp -d) && git clone https://github.com/micahvdm/mod-host.git
+pushd mod-host
 make
 sudo make install
 popd
 
-gitclone MODUI_REPO mod-ui
-
-pushd "/home/pi/mod-ui"
+pushd $(mktemp -d) && git clone https://github.com/micahvdm/mod-ui.git
+pushd mod-ui
 chmod +x setup.py
 cd utils
 make
 cd ..
 sudo ./setup.py install
-cp -r default.pedalboard /home/pi/data/.pedalboards
+cp -r default.pedalboard /home/pistomp/data/.pedalboards
 popd
 
-gitclone MODMIDI_REPO mod-midi-merger
-
-pushd "/home/pi/mod-midi-merger"
+pushd $(mktemp -d) && git clone https://github.com/micahvdm/mod-midi-merger.git
+pushd mod-midi-merger
 mkdir build && cd build
 cmake ..
 make
 sudo make install
 popd
 
-gitclone AMIDI_REPO amidithru
-
-pushd "/home/pi/amidithru"
+pushd $(mktemp -d) && git clone https://github.com/BlokasLabs/amidithru.git
+pushd amidithru
 sed -i 's/CXX=g++.*/CXX=g++/' Makefile
 sudo make install
 popd
 
-gitclone TOUCHOSC_REPO touchosc2midi
-
-pushd "/home/pi/touchosc2midi"
+pushd $(mktemp -d) && git clone https://github.com/micahvdm/touchosc2midi.git
+pushd touchosc2midi
 sudo pip3 install ./
 popd
 

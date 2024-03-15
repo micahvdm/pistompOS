@@ -20,7 +20,7 @@ pushd "/home/pi"
 
 ## Step 4: clone KIAUH repo
 echo_green "Clone pi-Stomp repository ..."
-gitclone PISTOMP_REPO pi-stomp
+git clone -b beta https://github.com/TreeFallSound/pi-stomp.git
 
 unpack /filesystem/home/pi /home/"pi" "pi"
 
