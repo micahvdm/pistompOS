@@ -15,4 +15,4 @@ export RPI_IMAGER_DESCRIPTION="A raspberrypi distro built with CustomPiOS"
 export RPI_IMAGER_WEBSITE="https://github.com/micahvdm/pistompOS"
 export RPI_IMAGER_ICON="https://raw.githubusercontent.com/TreeFallSound/pi-stomp/master/modalapi/pi-stomp.png"
 
-export MODULES="base,network,req_preinstall(auto-mount-removable,mod,lilv,mod_ttymidi,audio,pistomp,services,sys,kernel,password-for-sudo)"
+export MODULES="base,network,req_preinstall(auto-mount-removable,pistomp,mod,lilv,mod_ttymidi,audio,services,sys,kernel,password-for-sudo)"
