@@ -8,6 +8,7 @@ set -Ee
 # shellcheck disable=SC1091
 source /common.sh
 install_cleanup_trap
+check_install_pkgs git
 
 wget https://www.treefallsound.com/downloads/lv2plugins.tar.gz
 tar -zxf lv2plugins.tar.gz

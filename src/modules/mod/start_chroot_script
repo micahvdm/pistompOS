@@ -12,6 +12,7 @@ set -e
 
 source /common.sh
 install_cleanup_trap
+check_install_pkgs git
 
 pushd $(mktemp -d) && git clone https://github.com/micahvdm/jack2.git
 pushd jack2
