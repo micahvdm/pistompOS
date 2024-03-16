@@ -39,7 +39,7 @@ cd utils
 make
 cd ..
 sudo ./setup.py install
-cp -r default.pedalboard /home/pistomp/data/.pedalboards
+cp -r default.pedalboard /home/pi/data/.pedalboards
 popd
 
 pushd $(mktemp -d) && git clone https://github.com/micahvdm/mod-midi-merger.git
